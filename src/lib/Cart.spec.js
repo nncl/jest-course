@@ -2,6 +2,10 @@ import Cart from './Cart';
 
 describe(`Cart`, () => {
   let cart;
+  let product = {
+    title: `Adidas running shoes - men`,
+    price: 35388, // 353.88 | R$ 353,88
+  };
 
   beforeEach(() => {
     cart = new Cart();
@@ -13,15 +17,26 @@ describe(`Cart`, () => {
 
   it(`should multiply quantity and price and receive the total amount`, () => {
     const item = {
-      product: {
-        title: `Adids running shoes - men`,
-        price: 35388 // 353.88 | R$ 353,88
-      },
+      product,
       quantity: 2, // 70776
     };
 
     cart.add(item);
 
     expect(cart.getTotal()).toEqual(70776);
+  });
+
+  it(`should ensure no more than one product exists at a time`, () => {
+    cart.add({
+      product,
+      quantity: 2, // 70776
+    });
+
+    cart.add({
+      product,
+      quantity: 1, // 35388
+    });
+
+    expect(cart.getTotal()).toEqual(35388);
   });
 });
