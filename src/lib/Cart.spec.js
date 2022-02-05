@@ -79,5 +79,31 @@ describe(`Cart`, () => {
       expect(cart.checkout()) // .toMatchInlineSnapshot();
         .toMatchSnapshot();
     });
+
+    it('should return an object with the total and the list of items when summary() is called', () => {
+      cart.add({
+        product,
+        quantity: 2, // 70776
+      });
+
+      cart.add({
+        product: product2,
+        quantity: 1, // 70776
+      });
+
+      expect(cart.summary()).toMatchSnapshot();
+      expect(cart.getTotal()).toBeGreaterThan(0);
+    });
+
+    it('should reset the cart when checkout() is called', () => {
+      cart.add({
+        product,
+        quantity: 2, // 70776
+      });
+
+      cart.checkout();
+
+      expect(cart.getTotal()).toEqual(0);
+    });
   });
 });
