@@ -49,9 +49,7 @@ export default class Cart {
 
       if (item.condition?.percentage) {
         discount = calculatePercentageAmount(amount, item);
-      }
-
-      if (item.condition?.quantity) {
+      } else if (item.condition?.quantity) {
         discount = calculateQuantityAmount(amount, item);
       }
 
