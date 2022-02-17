@@ -215,5 +215,19 @@ describe(`Cart`, () => {
 
       expect(cart.getTotal().getAmount()).toBe(35388);
     });
+
+    it('should include formatted amount in the summary', () => {
+      cart.add({
+        product,
+        quantity: 2, // 70776
+      });
+
+      cart.add({
+        product: product2,
+        quantity: 1, // 70776
+      });
+
+      expect(cart.summary().formatted).toEqual('R$1,159.42');
+    });
   });
 });
