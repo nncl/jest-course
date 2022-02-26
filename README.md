@@ -4,7 +4,7 @@ https://javascript.tv.br/
 
 ## Debugging
 
-Use NDB for debugging, i.e.:
+Use [NDB](https://www.npmjs.com/package/ndb) for debugging, i.e.:
 
 ```js
 const myFunc = () => {
